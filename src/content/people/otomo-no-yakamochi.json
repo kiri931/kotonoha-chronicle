@@ -1,0 +1,69 @@
+{
+  "id": "otomo-no-yakamochi",
+  "name": "大伴家持",
+  "kana": "おおとも の やかもち",
+  "nameEn": "Otomo no Yakamochi",
+  "eraId": "ancient",
+  "birth": 718,
+  "death": 785,
+  "fields": [
+    "歌人",
+    "官人"
+  ],
+  "headline": "万葉集をまとめたとされる歌人",
+  "summaryShort": "万葉集に最も多くの歌を残し、その編纂に深く関わったとされる官人です。農民や防人など、名も身分も分からない人の歌を同じ本に収めました。",
+  "history": "718年ごろ、名門の大伴氏に生まれました。父も歌人です。大伴氏は代々、朝廷の警護を担ってきた家でしたが、家持の時代には藤原氏が力を持ち、一族は次第に中心から外れていきます。家持自身も越中守として地方へ赴任し、都と地方を行き来しました。\n越中での五年間に多くの歌を詠んでいます。地方の自然と、都から離れた孤独が題材になりました。『万葉集』には家持の歌が四百七十首以上収められ、全体の一割を超えます。編纂の中心にいたとされるのも、この分量と、巻の構成のしかたからです。特徴的なのは、収められた歌の幅の広さでした。天皇や貴族の歌と並んで、東国の農民が詠んだ東歌、九州へ送られた兵士とその家族の防人歌が、同じ本に入っています。作者の名も身分も分からない歌を、削らずに残しました。晩年は政変に巻き込まれ、死後に官位を剥奪されています。\n785年に亡くなりました。集の最後を飾るのは、新年の雪に良いことが重なるようにと詠んだ家持の一首です。",
+  "quotes": [
+    {
+      "text": "新しき年の始めの初春の今日降る雪のいや重け吉事",
+      "reading": "新しい年の初めの、この春の日に降る雪のように、良いことがますます積み重なってほしい。",
+      "meaning": "『万葉集』全二十巻の最後に置かれた歌です。降り積もる雪に、良いことが重なるようにと願いを重ねました。四千五百首を締めくくる位置に、静かな祝いの一首を置いた選び方に、編む人の考えが見えます。",
+      "source": "『万葉集』巻二十（集の最後の歌）",
+      "confidence": "確実"
+    },
+    {
+      "text": "うらうらに照れる春日に雲雀上がり心悲しも独りし思へば",
+      "reading": "うららかに照る春の日に、ひばりが空へ上がっていく。それなのに心は悲しい、一人で物を思っていると。",
+      "meaning": "良い天気であることと、心が晴れないことを並べただけの歌です。理由は書かれていません。景色と気持ちが一致しない状態を、そのまま置いた歌として、千二百年後にも通じる形になっています。",
+      "source": "『万葉集』巻十九",
+      "confidence": "確実"
+    }
+  ],
+  "values": [
+    "bi",
+    "rita",
+    "nebari"
+  ],
+  "valueNotes": {
+    "bi": "晴れた空と晴れない心を並べるだけで、説明せずに気分を伝えました。",
+    "rita": "名も身分も分からない人の歌を、貴族の歌と同じ本に削らずに収めています。",
+    "nebari": "都から外れ、地方や政変のなかでも歌を作り、集をまとめ続けました。"
+  },
+  "image": {
+    "src": "src/assets/portraits/otomo-no-yakamochi.jpg",
+    "credit": "Portrait of Ōtomo no Yakamochi. He was the 3rd shōgun of Japan from 784 to 785 CE.／http://www.konpira.or.jp/museum/houmotsu/houmotsu_2009.html",
+    "license": "Public domain",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASanj%C5%ABrokkasen-gaku_-_5_-_Kan%C5%8D_Tan%E2%80%99y%C5%AB_-_Ch%C5%ABnagon_Yakamochi.jpg"
+  },
+  "related": [
+    "kakinomoto-no-hitomaro",
+    "nukata-no-okimi"
+  ],
+  "refs": [
+    {
+      "title": "ウィキペディア日本語版「大伴家持」",
+      "url": "https://ja.wikipedia.org/wiki/大伴家持",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "title": "ウィキペディア日本語版「万葉集」",
+      "url": "https://ja.wikipedia.org/wiki/万葉集",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "title": "ウィキペディア日本語版「防人」",
+      "url": "https://ja.wikipedia.org/wiki/防人",
+      "license": "CC BY-SA 4.0"
+    }
+  ]
+}

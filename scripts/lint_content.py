@@ -49,9 +49,12 @@ for d in people:
             problems.append(f"{d['id']}: related の「{r}」が存在しません")
 
 # 収録バランス
-women = {'murasaki-shikibu', 'tsuda-umeko', 'yosano-akiko', 'higuchi-ichiyo', 'hirooka-asako'}
+women = {
+    'murasaki-shikibu', 'tsuda-umeko', 'yosano-akiko', 'higuchi-ichiyo', 'hirooka-asako',
+    'nukata-no-okimi', 'sei-shonagon', 'ono-no-komachi', 'hojo-masako', 'hiratsuka-raicho',
+}
 n_women = len(ids & women)
-warriors = {'oda-nobunaga','toyotomi-hideyoshi','tokugawa-ieyasu','takeda-shingen','uesugi-kenshin'}
+warriors = {'oda-nobunaga','toyotomi-hideyoshi','tokugawa-ieyasu','takeda-shingen','uesugi-kenshin','date-masamune'}
 n_war = len(ids & warriors)
 print(f"人物 {len(people)}名／名言 {sum(len(d['quotes']) for d in people)}件")
 print(f"女性 {n_women}名（2名以上が必要）／武将 {n_war}名（半数未満が必要：{len(people)//2}名まで）")

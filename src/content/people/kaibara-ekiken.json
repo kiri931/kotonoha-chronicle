@@ -1,0 +1,65 @@
+{
+  "id": "kaibara-ekiken",
+  "name": "貝原益軒",
+  "kana": "かいばら えきけん",
+  "nameEn": "Ekiken Kaibara",
+  "eraId": "edo",
+  "birth": 1630,
+  "death": 1714,
+  "fields": [
+    "儒学者",
+    "本草学者",
+    "教育"
+  ],
+  "headline": "健康の作法を、庶民の言葉で書いた人",
+  "summaryShort": "福岡藩に仕えた学者です。動植物を調べて記録する一方、養生訓など、生活のしかたを平易な仮名まじり文で広く書きました。",
+  "history": "1630年、福岡藩の藩医の家に生まれました。若いころ藩主の怒りに触れて七年間浪人し、その間に独学を進めています。復帰後は京都で学び、朱子学のほか、医学、本草学、地理を修めました。藩に戻ってからは、領内を歩いて『筑前国続風土記』をまとめ、動植物や地形を記録しています。\n益軒の特徴は、書く相手を学者に限らなかった点です。当時の学術書は漢文が普通でしたが、益軒は仮名まじりの平易な文章で、生活に使える知識を書きました。子どもの教育について、女性の暮らしについて、農業について、それぞれ書物を残しています。八十三歳のときに著した『養生訓』はその代表です。食べ過ぎないこと、腹八分にすること、歩くこと、怒りや心配を長引かせないこと、歯を大切にすることなど、日々の作法を具体的に並べました。自身は体が弱く、養生を実践して長く生きた経験がもとになっています。\n1714年、八十五歳で亡くなりました。専門知識を、読む人の生活の言葉に翻訳した早い例です。",
+  "quotes": [
+    {
+      "text": "人の身は父母を本とし、天地を初とす",
+      "reading": "人の体は父母をもとにし、天地をはじまりとしている。",
+      "meaning": "『養生訓』の冒頭です。自分の体は自分だけのものではない、という前提を最初に置きました。だから大切に使え、という話につながります。健康法の理由を、個人の得ではないところに置いた書き出しです。",
+      "source": "貝原益軒『養生訓』巻第一",
+      "confidence": "確実"
+    },
+    {
+      "text": "腹八分に食して、飲食を節すべし",
+      "reading": "腹八分目で食べるようにし、飲み食いを控えめにしなさい。",
+      "meaning": "『養生訓』の実践項目の一つです。三百年前に書かれ、いまも同じ言い方で使われています。難しい理屈ではなく、その日から実行できる形に落として書いたことが、長く残った理由と考えられます。",
+      "source": "貝原益軒『養生訓』",
+      "confidence": "確実"
+    }
+  ],
+  "values": [
+    "manabi",
+    "rita",
+    "nebari"
+  ],
+  "valueNotes": {
+    "manabi": "領内を歩いて動植物や地形を自分で調べ、記録に残しました。",
+    "rita": "漢文ではなく仮名まじり文で書き、学者以外の人が読める形にしています。",
+    "nebari": "体が弱い自分に養生を試し、八十五歳まで書き続けました。"
+  },
+  "image": {
+    "src": "src/assets/portraits/kaibara-ekiken.png",
+    "credit": "Unknown authorUnknown author／Original source = https://wwwap.hi.u-tokyo.ac.jp/ships/shipscontroller . This is a cropped version of the artwork = https://commons.wikimedia.org/wiki/File:Kaibara_Ekiken2",
+    "license": "Public domain",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APortrait-Kaibara-Ekiken-%28cropped%29-c1700.png"
+  },
+  "related": [
+    "ishida-baigan",
+    "sugita-genpaku"
+  ],
+  "refs": [
+    {
+      "title": "ウィキペディア日本語版「貝原益軒」",
+      "url": "https://ja.wikipedia.org/wiki/貝原益軒",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "title": "ウィキペディア日本語版「養生訓」",
+      "url": "https://ja.wikipedia.org/wiki/養生訓",
+      "license": "CC BY-SA 4.0"
+    }
+  ]
+}

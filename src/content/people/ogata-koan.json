@@ -1,0 +1,71 @@
+{
+  "id": "ogata-koan",
+  "name": "緒方洪庵",
+  "kana": "おがた こうあん",
+  "nameEn": "Koan Ogata",
+  "eraId": "bakumatsu",
+  "birth": 1810,
+  "death": 1863,
+  "fields": [
+    "医師",
+    "蘭学者",
+    "教育者"
+  ],
+  "headline": "医は自分のためではないと書いた人",
+  "summaryShort": "大坂で適塾を開いた蘭方医です。天然痘の予防に取り組み、医師の心得を訳して残しました。福沢諭吉ら多くの人材が学んでいます。",
+  "history": "1810年、備中足守藩の武士の家に生まれました。体が弱く、武士として立つことをあきらめて医学を志します。大坂と江戸で蘭方医学を学び、長崎にも遊学しました。1838年、大坂に医院と蘭学塾を開きます。これが適塾です。\n適塾では、オランダ語の原書を読む力が徹底して鍛えられました。塾生は実力別に席が決まり、成績で入れ替わります。身分は問われませんでした。福沢諭吉、大村益次郎、橋本左内、長与専斎ら、後の日本を動かす人物が学んでいます。医師としての洪庵は、天然痘の予防に力を注ぎました。1849年、大坂に除痘館を開き、種痘を広めます。当時は迷信による反対も強く、無料での接種と地道な説得を続けました。1858年のコレラ流行では、治療法をまとめた書物を短期間で刊行し、無償で配っています。医師の心得としては、ドイツの医学者フーフェラントの文章を訳した『扶氏医戒之略』を掲げました。\n1863年、幕府に招かれた江戸で急死します。五十三歳でした。",
+  "quotes": [
+    {
+      "text": "医の世に生活するは人の為のみ、おのれがためにあらずといふことを其業の本旨とす",
+      "reading": "医者がこの世で生きていくのは人のためであって、自分のためではない。それをこの仕事の根本とする。",
+      "meaning": "西洋の医師の心得を訳し、適塾に掲げた文章の冒頭です。名声も利益も目的にするなと言い切っています。種痘の無料接種や、流行病の治療法を無償で配った行動と、そのままつながっています。",
+      "source": "緒方洪庵『扶氏医戒之略』",
+      "confidence": "確実"
+    },
+    {
+      "text": "病者に対しては唯病者を視るべし。貴賤貧富を顧みることなかれ",
+      "reading": "病人に向かうときは、ただ病人として見なさい。身分や貧富を気にしてはならない。",
+      "meaning": "同じ心得のなかの一条です。誰を先に診るかという、現場で毎日発生する判断についての指示になっています。塾でも身分ではなく実力で席を決めており、同じ考え方が教育の側にも表れています。",
+      "source": "緒方洪庵『扶氏医戒之略』",
+      "confidence": "確実"
+    }
+  ],
+  "values": [
+    "rita",
+    "manabi",
+    "makoto"
+  ],
+  "valueNotes": {
+    "rita": "種痘を無料で行い、流行病の治療法をまとめた書物を無償で配りました。",
+    "manabi": "適塾で原書を読む力を鍛え、身分ではなく実力で席を決めています。",
+    "makoto": "掲げた医師の心得どおりに、身分や貧富で患者を選びませんでした。"
+  },
+  "image": {
+    "src": "src/assets/portraits/ogata-koan.jpg",
+    "credit": "Painted by Goseda Yoshimatsu／(1) Osaka University - Tekijuku Memorial Center (大阪大学適塾記念センター蔵). (2) edo-g.com [1]. (3) Mishima Y. The dawn of surgery in Japan, with special reference to the German socie",
+    "license": "Public domain",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AKoan_Ogata_1901.jpg"
+  },
+  "related": [
+    "fukuzawa-yukichi",
+    "sakuma-shozan",
+    "kitasato-shibasaburo"
+  ],
+  "refs": [
+    {
+      "title": "ウィキペディア日本語版「緒方洪庵」",
+      "url": "https://ja.wikipedia.org/wiki/緒方洪庵",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "title": "ウィキペディア日本語版「適塾」",
+      "url": "https://ja.wikipedia.org/wiki/適塾",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "title": "ウィキペディア日本語版「除痘館」",
+      "url": "https://ja.wikipedia.org/wiki/除痘館",
+      "license": "CC BY-SA 4.0"
+    }
+  ]
+}
