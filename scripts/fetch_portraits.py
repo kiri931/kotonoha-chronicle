@@ -37,6 +37,10 @@ def api(host, params, tries=5):
 
 # ja.wikipedia の代表画像が花押（署名）や像の写真になってしまう人物は、
 # コモンズ上の肖像画を直接指定する。
+# 没後70年を超えず、肖像権・著作権への配慮が要る人物は肖像を使わない（仕様 §9.3）。
+# 取得してよい人物だけを明示する運用にしている。
+ONLY = None  # 例: {'higuchi-ichiyo'} と書くと、その人だけを対象にする
+
 OVERRIDE = {
     'oda-nobunaga': 'Odanobunaga.jpg',
     'tokugawa-ieyasu': 'Tokugawa Ieyasu2.JPG',
@@ -64,6 +68,9 @@ def main(dry=False):
     report = []
     for path in PEOPLE:
         d = json.load(open(path, encoding='utf-8'))
+        if ONLY is not None and d['id'] not in ONLY:
+            report.append((d['id'], 'skip', '取得対象外'))
+            continue
         if d.get('image') and not dry:
             report.append((d['id'], 'have', '取得済み'))
             continue
@@ -96,10 +103,14 @@ def main(dry=False):
             if not acceptable(lic):
                 report.append((d['id'], 'reject', f'ライセンス「{lic}」は条件外'))
                 continue
-            if mime not in ('image/jpeg', 'image/png'):
+            # TIFF などはコモンズが生成する縮小版（JPEG）を使う
+            if mime not in ('image/jpeg', 'image/png', 'image/tiff'):
                 report.append((d['id'], 'reject', f'形式 {mime}'))
                 continue
-            ext = '.jpg' if mime == 'image/jpeg' else '.png'
+            ext = '.png' if mime == 'image/png' else '.jpg'
+            if mime == 'image/tiff' and not ii.get('thumburl'):
+                report.append((d['id'], 'reject', 'TIFF の縮小版が無い'))
+                continue
             url = ii.get('thumburl') or ii['url']
             dest = os.path.join(OUT, d['id'] + ext)
             if not dry:

@@ -1,0 +1,70 @@
+{
+  "id": "toyoda-sakichi",
+  "name": "豊田佐吉",
+  "kana": "とよだ さきち",
+  "nameEn": "Sakichi Toyoda",
+  "eraId": "keiei",
+  "birth": 1867,
+  "death": 1930,
+  "fields": [
+    "発明家",
+    "実業家"
+  ],
+  "headline": "機械が自分で異常に気づく仕組みを作った人",
+  "summaryShort": "大工の家に生まれ、独学で自動織機を発明した人です。糸が切れたら機械が自分で止まる仕組みは、いまも生産現場の考え方の土台になっています。",
+  "history": "1867年、遠江国（いまの静岡県湖西市）の大工の家に生まれました。学校は小学校までです。母が手織り機に向かう姿を見て、その労力を減らせないかと考えたのが出発点だと伝えられます。二十代で木製の人力織機を発明し、以後、改良を重ねました。\n佐吉の発明の核心は、速く織ることではなく、機械が自分で異常に気づいて止まることでした。糸が切れたまま織り続ければ、不良品が大量にできます。そこで、糸が切れたら機械が自動的に停止する仕掛けを組み込みました。この考え方は後に「自働化」と呼ばれ、人が機械につきっきりにならずに済む生産方式の柱になります。1924年に完成した無停止杼換式自動織機は、走らせたまま糸を交換できるものでした。1929年、この特許を英国の織機メーカーへ譲渡します。その資金が、息子の喜一郎が始める自動車事業の元手になりました。\n1930年に亡くなりました。小学校しか出ていない発明家が、機械に判断させるという発想を残しています。",
+  "quotes": [
+    {
+      "text": "障子を開けてみよ、外は広いぞ",
+      "reading": "障子を開けて外を見てみなさい。世界は広い。",
+      "meaning": "佐吉の言葉として伝えられ、豊田グループで語り継がれてきました。手元の作業に閉じこもるなという意味です。国内の織機で満足せず、海外の技術と市場を見て回った本人の行動と重なります。",
+      "source": "豊田佐吉の語として伝えられるもの",
+      "confidence": "諸説あり"
+    },
+    {
+      "text": "俺は織機をやったから、お前は自動車をやれ",
+      "reading": "自分は織機をやった。だからお前は自動車をやりなさい。",
+      "meaning": "息子の喜一郎に語ったとされる言葉です。自分の事業を継がせるのではなく、次の分野へ行けと言いました。守るより移れという判断が、結果として自動車産業への転換を生んでいます。",
+      "source": "息子・喜一郎に語ったとされる言葉",
+      "confidence": "伝承"
+    }
+  ],
+  "values": [
+    "shinshu",
+    "takumi",
+    "nebari"
+  ],
+  "valueNotes": {
+    "shinshu": "織機の速さではなく、機械に異常を判断させるという別の方向へ踏み出しました。",
+    "takumi": "小学校を出たあとは独学で、木製織機から自動織機まで自分で作り上げています。",
+    "nebari": "母の手仕事を楽にしたいという一点から、四十年かけて改良を重ねました。"
+  },
+  "image": {
+    "src": "src/assets/portraits/toyoda-sakichi.jpg",
+    "credit": "Unknown authorUnknown author／This image is available from the website of the National Diet Library",
+    "license": "Public domain",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASakichi_Toyoda.jpg"
+  },
+  "related": [
+    "toyoda-kiichiro",
+    "tanaka-hisashige",
+    "ohno-taiichi"
+  ],
+  "refs": [
+    {
+      "title": "ウィキペディア日本語版「豊田佐吉」",
+      "url": "https://ja.wikipedia.org/wiki/豊田佐吉",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "title": "ウィキペディア日本語版「豊田自動織機」",
+      "url": "https://ja.wikipedia.org/wiki/豊田自動織機",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "title": "ウィキペディア日本語版「自働化」",
+      "url": "https://ja.wikipedia.org/wiki/自働化",
+      "license": "CC BY-SA 4.0"
+    }
+  ]
+}

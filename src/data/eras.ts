@@ -91,6 +91,15 @@ export const eras: Era[] = [
     order: 9,
     lead: 'ものをつくり、人を育て、会社を続ける。その現場から生まれた言葉は、飾りがないぶん、いまも直接届きます。',
   },
+  {
+    id: 'gendai-gijutsu',
+    name: '現代の技術者',
+    rangeLabel: '1945–',
+    from: 1945,
+    to: 2100,
+    order: 10,
+    lead: '設計し、作り、動かす人たちの言葉です。ものが小さく速くなっても、決めることの中身は変わっていません。何を選んで、何を捨てるか。現場から出た言い方はいつも短いです。',
+  },
 ];
 
 export const eraMap = new Map(eras.map((e) => [e.id, e]));

@@ -57,6 +57,8 @@ const path = Astro.url.pathname;
         } catch (e) {}
       })();
     </script>
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8375913886731430" crossorigin="anonymous"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">本文へスキップ</a>
@@ -124,5 +126,8 @@ const path = Astro.url.pathname;
         });
       })();
     </script>
+    <!-- 高校情報サイトへ戻る導線。実体はメインサイトの public/site-bar.js。
+         base を付けると /kotonoha-chronicle/site-bar.js を探して404になるので、絶対パスのまま書く。 -->
+    <script src="/site-bar.js" defer></script>
   </body>
 </html>

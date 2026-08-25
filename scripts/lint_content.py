@@ -9,6 +9,9 @@ problems = []
 CYRILLIC = re.compile(r'[Ѐ-ӿ]')
 HANGUL = re.compile(r'[가-힯]')
 LATIN_WORD = re.compile(r'[A-Za-z]{3,}')
+# 日本語に置き換えられない固有名詞だけを許可する。
+# ここに足すのは「訳すと別物になる名前」に限ること（説明できる語は日本語で書く）。
+ALLOWED_LATIN = {'Ruby'}
 BIG_SUBJECT = re.compile(r'日本人(は|が|だけ|のみ|こそ)')
 PRAISE = re.compile(r'(世界一|人類史上|最も偉大|偉大な英雄|唯一無二の精神|日本だけが)')
 
@@ -25,6 +28,8 @@ for f in files:
         if CYRILLIC.search(t) or HANGUL.search(t):
             problems.append(f"{d['id']}: 日本語以外の文字が混入 -> {t[:40]}")
         for w in LATIN_WORD.findall(t):
+            if w in ALLOWED_LATIN:
+                continue
             problems.append(f"{d['id']}: ラテン文字語「{w}」が本文に混入")
         if BIG_SUBJECT.search(t):
             problems.append(f"{d['id']}: 「日本人は〜」型の断定 -> {t[:40]}")
