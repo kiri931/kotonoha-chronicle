@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { link } from '../lib/url';
 import Timeline from '../components/Timeline.astro';
 import PersonCard from '../components/PersonCard.astro';
 import QuoteBlock from '../components/QuoteBlock.astro';
@@ -46,7 +47,7 @@ const jsonLd = {
     </p>
     <QuoteBlock quote={todays.quote} />
     <p class="mt-3 text-sm">
-      <a href={`/people/${todays.person.data.id}/`} style="color: var(--ink);">
+      <a href={link(`/people/${todays.person.data.id}/`)} style="color: var(--ink);">
         — {todays.person.data.name}（{todays.person.data.headline}）の言葉を読む →
       </a>
     </p>
@@ -69,7 +70,7 @@ const jsonLd = {
       {values.map((v) => (
         <li>
           <a
-            href={`/values/${v.id}/`}
+            href={link(`/values/${v.id}/`)}
             class="flex h-full flex-col gap-1 rounded-lg border p-4 no-underline"
             style={`border-color: var(--rule); background: var(--paper-raised); border-left: 6px solid ${cssColor(v.id)}; color: var(--ink);`}
           >
@@ -90,7 +91,7 @@ const jsonLd = {
       <ul class="grid gap-4 sm:grid-cols-2">
         {keiei.slice(0, 4).map((p) => (<li><PersonCard person={p} /></li>))}
       </ul>
-      <p class="mt-4 text-sm"><a href="/eras/keiei/" style="color: var(--ink);">経営者の一覧をすべて見る →</a></p>
+      <p class="mt-4 text-sm"><a href={link('/eras/keiei/')} style="color: var(--ink);">経営者の一覧をすべて見る →</a></p>
     </section>
   )}
 </BaseLayout>

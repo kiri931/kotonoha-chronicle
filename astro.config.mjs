@@ -4,7 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://kotonoha-chronicle.pages.dev',
+  site: 'https://koukou-jouhou.org',
+  base: '/kotonoha-chronicle',
   integrations: [sitemap()],
   vite: { plugins: [tailwindcss()] },
   build: { format: 'directory' },

@@ -1,0 +1,10 @@
+{
+  "name": "kotonoha-chronicle",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-07-29",
+  "assets": { "directory": "dist", "binding": "ASSETS", "html_handling": "none" },
+  "routes": [
+    { "pattern": "koukou-jouhou.org/kotonoha-chronicle", "zone_name": "koukou-jouhou.org" },
+    { "pattern": "koukou-jouhou.org/kotonoha-chronicle/*", "zone_name": "koukou-jouhou.org" }
+  ]
+}

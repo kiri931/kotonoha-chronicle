@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { link } from '../../lib/url';
 import PersonCard from '../../components/PersonCard.astro';
 import { values, cssColor } from '../../data/values';
 import { allPeople } from '../../lib/people';
@@ -16,8 +17,8 @@ const { value, people } = Astro.props;
 <BaseLayout title={`${value.name} — ${value.meaning}`} description={`${value.name}（${value.meaning}）の軸で読む人物と名言。${value.lead}`}>
   <div class="mx-auto max-w-5xl px-4 py-10">
     <nav aria-label="パンくず" class="mb-4 text-sm" style="color: var(--ink-muted);">
-      <a href="/" style="color: var(--ink-muted);">ホーム</a> ／
-      <a href="/values/" style="color: var(--ink-muted);">八つの軸</a> ／ {value.name}
+      <a href={link('/')} style="color: var(--ink-muted);">ホーム</a> ／
+      <a href={link('/values/')} style="color: var(--ink-muted);">八つの軸</a> ／ {value.name}
     </nav>
     <div class="flex items-center gap-3">
       <span aria-hidden="true" style={`width:1.5rem;height:1.5rem;border-radius:4px;background:${cssColor(value.id)};display:inline-block;`}></span>

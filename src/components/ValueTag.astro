@@ -1,14 +1,15 @@
 ---
 import { getValue, cssColor } from '../data/values';
-interface Props { id: string; link?: boolean; small?: boolean }
-const { id, link = true, small = false } = Astro.props;
+import { link } from '../lib/url';
+interface Props { id: string; asLink?: boolean; small?: boolean }
+const { id, asLink = true, small = false } = Astro.props;
 const v = getValue(id);
 const label = v ? `${v.name}` : id;
 const cls = `inline-flex items-center gap-1.5 rounded-full border px-3 ${small ? 'py-0.5 text-xs' : 'py-1 text-sm'} no-underline`;
 const style = `border-color: var(--control-border); color: var(--ink); background: var(--paper-raised);`;
-const Tag = link ? 'a' : 'span';
+const Tag = asLink ? 'a' : 'span';
 ---
-<Tag class={cls} style={style} {...(link ? { href: `/values/${id}/` } : {})}>
+<Tag class={cls} style={style} {...(asLink ? { href: link(`/values/${id}/`) } : {})}>
   <span aria-hidden="true" style={`width:0.6rem;height:0.6rem;border-radius:999px;background:${cssColor(id)};display:inline-block;`}></span>
   <span>{label}<span class="sr-only">（{v?.meaning}）</span></span>
 </Tag>

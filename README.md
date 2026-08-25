@@ -14,7 +14,7 @@
 
 ```sh
 npm install
-npm run dev            # http://localhost:4321
+npm run dev            # http://localhost:4321/kotonoha-chronicle/
 npm run build          # astro build → dist/ → pagefind が検索インデックスを作る
 npm run preview        # ビルド結果の確認（Pagefind 検索はこちらでのみ動く）
 ```
@@ -152,8 +152,30 @@ docs/SPEC.md                仕様書
 
 ---
 
-## デプロイ（Cloudflare Pages 想定）
+## 公開先とデプロイ
 
-- ビルドコマンド：`npm run build`
-- 出力ディレクトリ：`dist`
-- 公開前に `astro.config.mjs` の `site` と `public/robots.txt` のドメインを実際の公開先に合わせてください。
+**https://koukou-jouhou.org/kotonoha-chronicle/**
+
+1ツール = 1 Cloudflare Worker の形で、サブパス配下に置いています
+（学校のフィルタリング対策のため、ドメイン直下やサブドメインでは公開しない方針）。
+
+```sh
+npm run build          # dist/ を作り、pagefind が検索インデックスを入れる
+npx wrangler deploy    # 本番を直接更新する。実行前に必ず一声かける
+```
+
+仕組みと注意点：
+
+- `astro.config.mjs` に `base: '/kotonoha-chronicle'` を設定し、サイト内リンクは
+  すべて `src/lib/url.ts` の `link()` を通しています。`href="/..."` を直書きすると
+  サブパスから外れて404になります。
+- `src/worker.ts` がURLからサブパスを剥がして `ASSETS` に渡します。
+- `wrangler.jsonc` に **`"html_handling": "none"`** が必要です。既定のままだと
+  Assets が `/foo/index.html` を `/foo` へ307リダイレクトし、その Location には
+  サブパスが入らないため、本番で全ページが404になります（ローカルの `astro dev` では再現しません）。
+  代わりに worker 側で `/` 終わりのパスに `index.html` を明示的に付けています。
+- デプロイ後の確認は必ず本番URLに対して行ってください。
+
+```sh
+/usr/bin/curl -s -o /dev/null -w "%{http_code}\n" "https://koukou-jouhou.org/kotonoha-chronicle/"
+```

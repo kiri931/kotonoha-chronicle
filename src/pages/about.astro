@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { link } from '../lib/url';
 import { allPeople } from '../lib/people';
 import { eras } from '../data/eras';
 import { values, cssColor } from '../data/values';
@@ -18,7 +19,7 @@ for (const p of people) for (const r of p.data.refs) {
 >
   <div class="mx-auto max-w-3xl px-4 py-10">
     <nav aria-label="パンくず" class="mb-4 text-sm" style="color: var(--ink-muted);">
-      <a href="/" style="color: var(--ink-muted);">ホーム</a> ／ このサイトについて
+      <a href={link('/')} style="color: var(--ink-muted);">ホーム</a> ／ このサイトについて
     </nav>
     <h1 class="font-serif text-3xl font-bold sm:text-4xl">このサイトについて</h1>
 
@@ -33,7 +34,7 @@ for (const p of people) for (const r of p.data.refs) {
         目的は、人物を称えることではありません。
         同じ問いに、違う時代の人がどう答えたかを並べて見ることです。
         並べてみると、大切にされてきた考え方がいくつか繰り返し出てきます。
-        それを<a href="/values/" style="color: var(--ink);">八つの軸</a>として整理しました。
+        それを<a href={link('/values/')} style="color: var(--ink);">八つの軸</a>として整理しました。
       </p>
     </section>
 
@@ -100,7 +101,7 @@ for (const p of people) for (const r of p.data.refs) {
       <h2 class="font-serif text-xl font-bold">年代の区切り</h2>
       <ul class="mt-2 space-y-1 text-sm">
         {eras.map((e) => (
-          <li><a href={`/eras/${e.id}/`} style="color: var(--ink);">{e.name}</a>（{e.rangeLabel}）</li>
+          <li><a href={link(`/eras/${e.id}/`)} style="color: var(--ink);">{e.name}</a>（{e.rangeLabel}）</li>
         ))}
       </ul>
       <p class="mt-3 text-sm leading-loose" style="color: var(--ink-muted);">
@@ -114,7 +115,7 @@ for (const p of people) for (const r of p.data.refs) {
         {values.map((v) => (
           <li>
             <span aria-hidden="true" style={`display:inline-block;width:.6rem;height:.6rem;border-radius:999px;background:${cssColor(v.id)};margin-right:.4rem;`}></span>
-            <a href={`/values/${v.id}/`} style="color: var(--ink);">{v.name}</a>：{v.meaning}
+            <a href={link(`/values/${v.id}/`)} style="color: var(--ink);">{v.name}</a>：{v.meaning}
           </li>
         ))}
       </ul>

@@ -1,5 +1,6 @@
 ---
 import Portrait from './Portrait.astro';
+import { link } from '../lib/url';
 import ValueTag from './ValueTag.astro';
 import { lifeLabel } from '../lib/people';
 import { getEra } from '../data/eras';
@@ -16,7 +17,7 @@ const era = getEra(d.eraId);
   <Portrait person={person} size={96} class="shrink-0 rounded" />
   <div class="min-w-0">
     <h3 class="font-serif text-lg font-bold leading-snug">
-      <a href={`/people/${d.id}/`} class="no-underline hover:underline" style="color: var(--ink);">{d.name}</a>
+      <a href={link(`/people/${d.id}/`)} class="no-underline hover:underline" style="color: var(--ink);">{d.name}</a>
     </h3>
     <p class="text-xs" style="color: var(--ink-muted);">
       {d.kana}／{lifeLabel(person)}{showEra && era ? `／${era.name}` : ''}

@@ -1,5 +1,6 @@
 ---
 import Portrait from './Portrait.astro';
+import { link } from '../lib/url';
 interface Props { groups: { era: any; people: any[] }[] }
 const { groups } = Astro.props;
 ---
@@ -12,20 +13,20 @@ const { groups } = Astro.props;
       >
         <p class="text-xs" style="color: var(--ink-muted);">{era.rangeLabel}</p>
         <h3 class="font-serif text-base font-bold">
-          <a href={`/eras/${era.id}/`} class="no-underline hover:underline" style="color: var(--ink);">{era.name}</a>
+          <a href={link(`/eras/${era.id}/`)} class="no-underline hover:underline" style="color: var(--ink);">{era.name}</a>
         </h3>
         <ul class="mt-3 space-y-2">
           {people.slice(0, 3).map((p) => (
             <li class="flex items-center gap-2">
               <Portrait person={p} size={40} class="shrink-0 rounded-full" />
-              <a href={`/people/${p.data.id}/`} class="text-sm no-underline hover:underline" style="color: var(--ink);">
+              <a href={link(`/people/${p.data.id}/`)} class="text-sm no-underline hover:underline" style="color: var(--ink);">
                 {p.data.name}
               </a>
             </li>
           ))}
         </ul>
         <p class="mt-3 text-xs">
-          <a href={`/eras/${era.id}/`} style="color: var(--ink-muted);">この年代の{people.length}人を見る →</a>
+          <a href={link(`/eras/${era.id}/`)} style="color: var(--ink-muted);">この年代の{people.length}人を見る →</a>
         </p>
       </li>
     ))}
