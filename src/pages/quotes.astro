@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ConfidenceBadge from '../components/ConfidenceBadge.astro';
+import { allQuotes } from '../lib/people';
+import { eras } from '../data/eras';
+import { values as valueDefs, getValue, cssColor } from '../data/values';
+
+const quotes = await allQuotes();
+const usedEras = eras.filter((e) => quotes.some((q) => q.person.data.eraId === e.id));
+const confidences = ['確実', '諸説あり', '伝承'] as const;
+---
+<BaseLayout
+  title="名言一覧"
+  description="収録しているすべての名言を一覧で読めます。年代・八つの軸・出典の確度でしぼりこみ、言葉や人物名で検索できます。"
+>
+  <div class="mx-auto max-w-5xl px-4 py-10">
+    <nav aria-label="パンくず" class="mb-4 text-sm" style="color: var(--ink-muted);">
+      <a href="/" style="color: var(--ink-muted);">ホーム</a> ／ 名言一覧
+    </nav>
+    <h1 class="font-serif text-3xl font-bold sm:text-4xl">名言一覧</h1>
+    <p class="mt-3 max-w-2xl leading-relaxed">
+      収録している{quotes.length}件の言葉です。しぼりこみと検索は、この場で切り替わります。
+    </p>
+
+    <form class="mt-8 space-y-4" id="filters" role="search" aria-label="名言のしぼりこみ">
+      <div>
+        <label for="q" class="block text-sm font-bold">言葉・人物名で探す</label>
+        <input
+          id="q" type="search" autocomplete="off" placeholder="例：志、利休、学び"
+          class="mt-1 w-full max-w-md rounded border px-3 py-2 text-base"
+          style="border-color: var(--control-border); background: var(--paper-raised); color: var(--ink);"
+        />
+      </div>
+
+      <fieldset>
+        <legend class="text-sm font-bold">年代</legend>
+        <div class="mt-2 flex flex-wrap gap-2">
+          <button type="button" class="chip" data-group="era" data-value="" aria-pressed="true">すべて</button>
+          {usedEras.map((e) => (
+            <button type="button" class="chip" data-group="era" data-value={e.id} aria-pressed="false">{e.name}</button>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend class="text-sm font-bold">八つの軸</legend>
+        <div class="mt-2 flex flex-wrap gap-2">
+          <button type="button" class="chip" data-group="value" data-value="" aria-pressed="true">すべて</button>
+          {valueDefs.map((v) => (
+            <button type="button" class="chip" data-group="value" data-value={v.id} aria-pressed="false">
+              <span aria-hidden="true" style={`display:inline-block;width:.55rem;height:.55rem;border-radius:999px;background:${cssColor(v.id)};margin-right:.35rem;`}></span>{v.name}
+            </button>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend class="text-sm font-bold">出典の確度</legend>
+        <div class="mt-2 flex flex-wrap gap-2">
+          <button type="button" class="chip" data-group="conf" data-value="" aria-pressed="true">すべて</button>
+          {confidences.map((c) => (
+            <button type="button" class="chip" data-group="conf" data-value={c} aria-pressed="false">{c}</button>
+          ))}
+        </div>
+      </fieldset>
+    </form>
+
+    <p id="result-count" class="mt-6 text-sm" aria-live="polite" style="color: var(--ink-muted);">{quotes.length}件を表示しています。</p>
+
+    <ul id="quote-list" class="mt-4 grid gap-4 sm:grid-cols-2">
+      {quotes.map(({ person, quote, index }) => (
+        <li
+          class="quote-item"
+          data-era={person.data.eraId}
+          data-values={person.data.values.join(' ')}
+          data-conf={quote.confidence}
+          data-text={`${quote.text} ${quote.reading ?? ''} ${person.data.name} ${person.data.kana} ${person.data.nameEn} ${quote.source}`}
+        >
+          <figure class="flex h-full flex-col rounded-lg border p-5" style="border-color: var(--rule); background: var(--paper-raised);">
+            <blockquote class="font-serif text-lg leading-relaxed">{quote.text}</blockquote>
+            <figcaption class="mt-3 text-sm" style="color: var(--ink-muted);">
+              <a href={`/people/${person.data.id}/`} style="color: var(--ink);">{person.data.name}</a>
+              <span>／{person.data.headline}</span>
+            </figcaption>
+            <p class="mt-3 text-sm leading-relaxed">{quote.meaning}</p>
+            <div class="mt-auto pt-3">
+              <p class="text-xs" style="color: var(--ink-muted);">出典：{quote.source}</p>
+              <div class="mt-2 flex flex-wrap items-center gap-2">
+                <ConfidenceBadge confidence={quote.confidence} />
+                {person.data.values.map((v: string) => (
+                  <span class="text-xs" style="color: var(--ink-muted);">
+                    <span aria-hidden="true" style={`display:inline-block;width:.5rem;height:.5rem;border-radius:999px;background:${cssColor(v)};margin-right:.25rem;`}></span>{getValue(v)?.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </figure>
+        </li>
+      ))}
+    </ul>
+
+    <p id="empty" class="mt-6 hidden">条件に合う言葉がありませんでした。しぼりこみを減らしてみてください。</p>
+
+    <section class="mt-16" aria-labelledby="sitesearch">
+      <h2 id="sitesearch" class="font-serif text-2xl font-bold">サイト全体を検索</h2>
+      <p class="mt-1 mb-3 text-sm" style="color: var(--ink-muted);">
+        人物の歩みの本文まで含めて探します（ビルド後の公開ページでのみ動きます）。
+      </p>
+      <div id="pagefind-search"></div>
+    </section>
+  </div>
+
+  <style is:global>
+    .chip {
+      border: 1px solid var(--control-border);
+      background: var(--paper-raised);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+    .chip[aria-pressed='true'] {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+      font-weight: 700;
+    }
+    .quote-item.is-hidden { display: none; }
+    .pagefind-ui { --pagefind-ui-primary: var(--ink); --pagefind-ui-text: var(--ink); --pagefind-ui-background: var(--paper-raised); --pagefind-ui-border: var(--rule-strong); --pagefind-ui-font: inherit; }
+  </style>
+
+  <script>
+    const state: Record<string, string> = { era: '', value: '', conf: '' };
+    const list = document.getElementById('quote-list')!;
+    const items = Array.from(list.querySelectorAll<HTMLElement>('.quote-item'));
+    const count = document.getElementById('result-count')!;
+    const empty = document.getElementById('empty')!;
+    const q = document.getElementById('q') as HTMLInputElement;
+
+    function apply() {
+      const needle = q.value.trim().toLowerCase();
+      let shown = 0;
+      for (const el of items) {
+        const okEra = !state.era || el.dataset.era === state.era;
+        const okValue = !state.value || (el.dataset.values ?? '').split(' ').includes(state.value);
+        const okConf = !state.conf || el.dataset.conf === state.conf;
+        const okText = !needle || (el.dataset.text ?? '').toLowerCase().includes(needle);
+        const ok = okEra && okValue && okConf && okText;
+        el.classList.toggle('is-hidden', !ok);
+        if (ok) shown++;
+      }
+      count.textContent = `${shown}件を表示しています。`;
+      empty.classList.toggle('hidden', shown !== 0);
+    }
+
+    document.querySelectorAll<HTMLButtonElement>('.chip').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const group = btn.dataset.group!;
+        state[group] = btn.dataset.value ?? '';
+        document
+          .querySelectorAll<HTMLButtonElement>(`.chip[data-group="${group}"]`)
+          .forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+        apply();
+      });
+    });
+    q.addEventListener('input', apply);
+    apply();
+
+    // Pagefind（ビルド成果物にのみ存在する）
+    (async () => {
+      const target = document.getElementById('pagefind-search');
+      if (!target) return;
+      try {
+        const res = await fetch('/pagefind/pagefind-ui.js', { method: 'HEAD' });
+        if (!res.ok) throw new Error('not built');
+        const css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = '/pagefind/pagefind-ui.css';
+        document.head.appendChild(css);
+        const s = document.createElement('script');
+        s.src = '/pagefind/pagefind-ui.js';
+        s.onload = () => {
+          // @ts-ignore - Pagefind はビルド時に生成される
+          new window.PagefindUI({ element: '#pagefind-search', showSubResults: true, translations: { placeholder: '人物名や言葉で検索', clear_search: '消す', load_more: 'もっと見る', search_label: 'サイト内検索', zero_results: '[SEARCH_TERM] に一致するページはありませんでした' } });
+        };
+        document.head.appendChild(s);
+      } catch {
+        target.innerHTML = '<p style="color: var(--ink-muted); font-size:0.875rem;">検索用の索引はビルド後に生成されます。開発サーバーでは上のしぼりこみをお使いください。</p>';
+      }
+    })();
+  </script>
+</BaseLayout>

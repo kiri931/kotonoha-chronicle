@@ -1,0 +1,69 @@
+{
+  "id": "murasaki-shikibu",
+  "name": "紫式部",
+  "kana": "むらさき しきぶ",
+  "nameEn": "Murasaki Shikibu",
+  "eraId": "heian",
+  "birth": null,
+  "death": null,
+  "fields": [
+    "作家",
+    "歌人"
+  ],
+  "headline": "人の心の動きを、初めて長編にした人",
+  "summaryShort": "『源氏物語』を書いた作家です。恋や嫉妬、老いといった心の揺れを、五十四帖の長編として書ききり、日本語で書かれた文学の基準をつくりました。",
+  "history": "生没年ははっきりしません。十世紀後半に、学者の家系である藤原為時の娘として生まれたと考えられています。幼いころ、弟の漢籍の学習を横で聞いて先に覚えてしまったという話が『紫式部日記』にあります。女性が漢学を修めることが歓迎されない時代でした。結婚して娘を得ますが、夫とは数年で死別しています。\nその前後から『源氏物語』を書き始めたとされます。光源氏という一人の男性の生涯を軸に、四代にわたる人々の心の動きを描いた五十四帖の長編です。身分や恋の駆け引きだけでなく、年を取ること、思い通りにならないこと、人が人をどう誤解するかが細かく書かれています。評判を聞いた藤原道長に招かれ、中宮彰子に仕えました。宮仕えのあいだの見聞は『紫式部日記』に残されています。\n物語は写本として読み継がれ、日本語で書かれた文学の基準になりました。現在は三十をこえる言語に翻訳され、千年前の心の描写がいまも読まれています。",
+  "quotes": [
+    {
+      "text": "めぐりあひて 見しやそれとも わかぬまに 雲がくれにし 夜半の月かな",
+      "reading": "久しぶりに会えたのに、それと見分ける間もなく、雲に隠れた夜半の月のように帰ってしまった。",
+      "meaning": "幼なじみと再会し、すぐに別れた場面を詠んだ歌で、百人一首にも入っています。人と会える時間の短さを、月にたとえて書きとめました。惜しむ気持ちを、責めずに情景だけで伝えるやり方が見えます。",
+      "source": "『紫式部集』『新古今和歌集』（百人一首 五十七番）",
+      "confidence": "確実"
+    },
+    {
+      "text": "日本紀などはただかたそばぞかし。これらにこそ道々しく詳しきことはあらめ",
+      "reading": "歴史書などは物事の一面にすぎない。物語にこそ、筋道の通った詳しいことが書かれているだろう。",
+      "meaning": "『源氏物語』蛍の巻で、物語の値打ちを論じた場面の言葉です。作り話は嘘だという見方に対し、人の心は物語のほうが正確に書けると答えています。フィクションの役割を千年前に言い当てた一節です。",
+      "source": "紫式部『源氏物語』蛍",
+      "confidence": "確実"
+    }
+  ],
+  "values": [
+    "bi",
+    "manabi",
+    "takumi"
+  ],
+  "valueNotes": {
+    "bi": "はっきり言い切らず、余白と情景で心の動きを伝える書き方を確立しました。",
+    "manabi": "歓迎されない時代に漢籍を学び、その知識を物語の構成に使っています。",
+    "takumi": "五十四帖にわたって人物の年齢や関係を破綻させずに書き通しました。"
+  },
+  "image": {
+    "src": "src/assets/portraits/murasaki-shikibu.jpg",
+    "credit": "Kikuchi Yōsai (1781 - 1878)／Wise Personages Past and Present containing portraits of more than five hundred loyalists, royal retainers and heroic women in history. (1868). [1]",
+    "license": "Public domain",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMurasaki%20Shikibu.jpg"
+  },
+  "related": [
+    "sugawara-no-michizane",
+    "zeami"
+  ],
+  "refs": [
+    {
+      "title": "ウィキペディア日本語版「紫式部」",
+      "url": "https://ja.wikipedia.org/wiki/紫式部",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "title": "ウィキペディア日本語版「源氏物語」",
+      "url": "https://ja.wikipedia.org/wiki/源氏物語",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "title": "ウィキペディア日本語版「紫式部日記」",
+      "url": "https://ja.wikipedia.org/wiki/紫式部日記",
+      "license": "CC BY-SA 4.0"
+    }
+  ]
+}

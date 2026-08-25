@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PersonCard from '../../components/PersonCard.astro';
+import { values, cssColor } from '../../data/values';
+import { allPeople } from '../../lib/people';
+
+export async function getStaticPaths() {
+  const people = await allPeople();
+  return values.map((v) => ({
+    params: { valueId: v.id },
+    props: { value: v, people: people.filter((p) => p.data.values.includes(v.id)) },
+  }));
+}
+const { value, people } = Astro.props;
+---
+<BaseLayout title={`${value.name} — ${value.meaning}`} description={`${value.name}（${value.meaning}）の軸で読む人物と名言。${value.lead}`}>
+  <div class="mx-auto max-w-5xl px-4 py-10">
+    <nav aria-label="パンくず" class="mb-4 text-sm" style="color: var(--ink-muted);">
+      <a href="/" style="color: var(--ink-muted);">ホーム</a> ／
+      <a href="/values/" style="color: var(--ink-muted);">八つの軸</a> ／ {value.name}
+    </nav>
+    <div class="flex items-center gap-3">
+      <span aria-hidden="true" style={`width:1.5rem;height:1.5rem;border-radius:4px;background:${cssColor(value.id)};display:inline-block;`}></span>
+      <h1 class="font-serif text-3xl font-bold sm:text-4xl">{value.name}</h1>
+    </div>
+    <p class="mt-2 font-bold" style="color: var(--ink-muted);">{value.meaning}</p>
+    <p class="mt-4 max-w-2xl font-serif leading-loose">{value.lead}</p>
+
+    {people.length === 0 ? (
+      <p class="mt-10">この軸の人物はまだ収録していません。</p>
+    ) : (
+      <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+        {people.map((p) => (<li><PersonCard person={p} showEra={true} /></li>))}
+      </ul>
+    )}
+  </div>
+</BaseLayout>

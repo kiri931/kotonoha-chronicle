@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Timeline from '../components/Timeline.astro';
+import PersonCard from '../components/PersonCard.astro';
+import QuoteBlock from '../components/QuoteBlock.astro';
+import { timeline, allQuotes, pickByDate, peopleByEra } from '../lib/people';
+import { values, cssColor } from '../data/values';
+
+const groups = await timeline();
+const quotes = await allQuotes();
+const today = new Date();
+const todays = pickByDate(quotes, today);
+const keiei = await peopleByEra('keiei');
+
+const lead = `千年をこえて、まだ残っている言葉があります。
+戦国の武将も、江戸の職人も、明治の学者も、昭和の経営者も、
+それぞれの時代の困難のなかで、たった一行を残しました。
+その一行と、その人が歩いた道を並べてみると、
+この国が何を大切にしてきたのかが、少しだけ見えてきます。`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'ことのは年代記',
+  alternateName: 'Kotonoha Chronicle',
+  description: '日本の歴史上の人物の名言と歩みを、年代別にまとめた読み物です。',
+  url: Astro.site?.href,
+  inLanguage: 'ja',
+};
+---
+<BaseLayout
+  title="ことのは年代記"
+  description="日本の歴史上の人物の名言・人物史・肖像を年代別にまとめました。飛鳥から現代の経営者まで、一行の言葉とその人の歩みを並べて読めます。"
+  jsonLd={jsonLd}
+>
+  <section class="mx-auto max-w-5xl px-4 pt-12 pb-10">
+    <p class="text-sm tracking-widest" style="color: var(--ink-muted);">KOTONOHA CHRONICLE</p>
+    <h1 class="font-serif text-4xl font-bold leading-tight sm:text-5xl">ことのは年代記</h1>
+    <p class="mt-6 max-w-2xl whitespace-pre-line font-serif text-base leading-loose sm:text-lg">{lead}</p>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-4 py-8" aria-labelledby="today">
+    <h2 id="today" class="font-serif text-2xl font-bold">今日の一言</h2>
+    <p class="mt-1 mb-4 text-sm" style="color: var(--ink-muted);">
+      日付をもとに毎日ひとつ選んでいます（{today.getUTCFullYear()}年{today.getUTCMonth() + 1}月{today.getUTCDate()}日）。
+    </p>
+    <QuoteBlock quote={todays.quote} />
+    <p class="mt-3 text-sm">
+      <a href={`/people/${todays.person.data.id}/`} style="color: var(--ink);">
+        — {todays.person.data.name}（{todays.person.data.headline}）の言葉を読む →
+      </a>
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-4 py-8" aria-labelledby="timeline">
+    <h2 id="timeline" class="font-serif text-2xl font-bold">年表でたどる</h2>
+    <p class="mt-1 mb-4 text-sm" style="color: var(--ink-muted);">
+      横にスクロールできます。年代名を選ぶと、その時代の人物一覧に移動します。
+    </p>
+    <Timeline groups={groups} />
+  </section>
+
+  <section class="mx-auto max-w-5xl px-4 py-8" aria-labelledby="values">
+    <h2 id="values" class="font-serif text-2xl font-bold">八つの軸から探す</h2>
+    <p class="mt-1 mb-4 text-sm" style="color: var(--ink-muted);">
+      言葉に共通して現れる考え方を、八つに分けました。色は目印で、色だけで意味が決まるわけではありません。
+    </p>
+    <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {values.map((v) => (
+        <li>
+          <a
+            href={`/values/${v.id}/`}
+            class="flex h-full flex-col gap-1 rounded-lg border p-4 no-underline"
+            style={`border-color: var(--rule); background: var(--paper-raised); border-left: 6px solid ${cssColor(v.id)}; color: var(--ink);`}
+          >
+            <span class="font-serif text-xl font-bold">{v.name}</span>
+            <span class="text-sm" style="color: var(--ink-muted);">{v.meaning}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {keiei.length > 0 && (
+    <section class="mx-auto max-w-5xl px-4 py-8" aria-labelledby="keiei">
+      <h2 id="keiei" class="font-serif text-2xl font-bold">近現代の経営者</h2>
+      <p class="mt-1 mb-4 max-w-2xl text-sm" style="color: var(--ink-muted);">
+        ものをつくり、人を育て、会社を続ける。その現場から生まれた言葉は、飾りがないぶん、いまも直接届きます。
+      </p>
+      <ul class="grid gap-4 sm:grid-cols-2">
+        {keiei.slice(0, 4).map((p) => (<li><PersonCard person={p} /></li>))}
+      </ul>
+      <p class="mt-4 text-sm"><a href="/eras/keiei/" style="color: var(--ink);">経営者の一覧をすべて見る →</a></p>
+    </section>
+  )}
+</BaseLayout>

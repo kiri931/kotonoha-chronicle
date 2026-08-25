@@ -1,0 +1,30 @@
+{
+  "name": "kotonoha-chronicle",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build && pagefind --site dist",
+    "preview": "astro preview",
+    "astro": "astro",
+    "og": "node scripts/generate-og.mjs",
+    "lint:content": "python3 scripts/lint_content.py",
+    "portraits": "python3 scripts/fetch_portraits.py",
+    "check:a11y": "node scripts/check-a11y.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.2.6",
+    "pagefind": "^1.5.2",
+    "sharp": "^0.35.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "allowScripts": {
+    "esbuild": true
+  }
+}

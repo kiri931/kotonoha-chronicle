@@ -1,0 +1,68 @@
+{
+  "id": "sakamoto-ryoma",
+  "name": "坂本龍馬",
+  "kana": "さかもと りょうま",
+  "nameEn": "Ryoma Sakamoto",
+  "eraId": "bakumatsu",
+  "birth": 1836,
+  "death": 1867,
+  "fields": [
+    "志士",
+    "商人"
+  ],
+  "headline": "敵同士を、引き合わせた人",
+  "summaryShort": "土佐藩を脱藩し、海運と貿易の結社を興した志士です。対立していた薩摩と長州を結ぶ役目を果たし、新しい政治体制の案も示しました。",
+  "history": "1836年、土佐藩（いまの高知県）の郷士の家に生まれました。実家は商いも営み、武士でありながら町の空気に近い環境で育っています。剣術修行のため江戸へ出た時期に黒船来航を目の当たりにしました。1862年、藩を脱けます。当時の脱藩は重罪でした。\n江戸で勝海舟に会い、斬るつもりが弟子になったと伝えられます。海軍操練所で航海術を学び、のちに長崎で亀山社中、次いで海援隊を組織しました。これは日本で最初期の商社的な組織とされます。1866年には、犬猿の仲だった薩摩と長州を仲介し、薩長同盟の成立に関わりました。武器と米を融通し合う形をつくることで、互いに引けなくなる状況を用意しています。翌年には、政権を朝廷へ返す構想を含む案（船中八策として伝わる）を示しました。\n1867年、京都の近江屋で暗殺されます。三十一歳でした。実際の影響力の大きさについては研究者の間で議論がありますが、立場の違う相手を結び直す動き方は、いまも語り継がれています。",
+  "quotes": [
+    {
+      "text": "日本を今一度せんたくいたし申候",
+      "reading": "日本をもう一度、洗濯してやりたい。",
+      "meaning": "姉の乙女へ宛てた手紙にある一文です。壊すでも倒すでもなく「洗濯」と書いたところに、この人の言葉の選び方が出ています。汚れを落として使い続ける、という感覚が、その後の動き方とも重なります。",
+      "source": "坂本龍馬 書簡（姉・乙女宛、1863年）",
+      "confidence": "確実"
+    },
+    {
+      "text": "世の人は我を何とも言わば言え 我が成す事は我のみぞ知る",
+      "reading": "世間が何と言おうと言わせておけ。自分のすることは自分だけが知っている。",
+      "meaning": "龍馬の作として伝えられてきた歌です。脱藩という重い決断をした人の立場に、後の世が重ねてきました。理解されないまま進む時期の支えとして読まれますが、本人の作という確証はありません。",
+      "source": "龍馬の作として伝わる歌",
+      "confidence": "伝承"
+    }
+  ],
+  "values": [
+    "shinshu",
+    "wa"
+  ],
+  "valueNotes": {
+    "shinshu": "脱藩、航海術、商社の設立と、当時の武士の枠の外へ出続けました。",
+    "wa": "薩摩と長州のように敵対する相手同士を、利害の形にして結び直しています。"
+  },
+  "image": {
+    "src": "src/assets/portraits/sakamoto-ryoma.jpg",
+    "credit": "Unknown authorUnknown author／This image is available from the website of the National Diet Library",
+    "license": "Public domain",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASakamoto_Ryoma.jpg"
+  },
+  "related": [
+    "katsu-kaishu",
+    "saigo-takamori",
+    "yoshida-shoin"
+  ],
+  "refs": [
+    {
+      "title": "ウィキペディア日本語版「坂本龍馬」",
+      "url": "https://ja.wikipedia.org/wiki/坂本龍馬",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "title": "ウィキペディア日本語版「薩長同盟」",
+      "url": "https://ja.wikipedia.org/wiki/薩長同盟",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "title": "ウィキペディア日本語版「海援隊」",
+      "url": "https://ja.wikipedia.org/wiki/海援隊",
+      "license": "CC BY-SA 4.0"
+    }
+  ]
+}

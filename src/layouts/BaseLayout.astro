@@ -1,0 +1,127 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  /** OGP画像の絶対パス（/og/xxx.png）。無ければ既定画像 */
+  ogImage?: string;
+  /** JSON-LD を差し込む */
+  jsonLd?: unknown;
+}
+
+const { title, description, ogImage = '/og/default.png', jsonLd } = Astro.props;
+const siteName = 'ことのは年代記';
+const fullTitle = title === siteName ? title : `${title}｜${siteName}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogUrl = new URL(ogImage, Astro.site).href;
+
+const nav = [
+  { href: '/', label: 'ホーム' },
+  { href: '/quotes/', label: '名言一覧' },
+  { href: '/values/', label: '八つの軸' },
+  { href: '/about/', label: 'このサイトについて' },
+];
+const path = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&display=swap"
+    />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    <script is:inline>
+      // 描画前にテーマを確定させる（ちらつき防止）
+      (function () {
+        try {
+          var t = localStorage.getItem('kc-theme');
+          if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
+    <header class="border-b" style="border-color: var(--rule); background: var(--paper-raised);">
+      <div class="mx-auto flex max-w-5xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3">
+        <a href="/" class="font-serif text-lg font-bold tracking-wide no-underline" style="color: var(--ink);">
+          ことのは年代記
+        </a>
+        <nav aria-label="メインメニュー" class="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm">
+          {nav.map((n) => (
+            <a
+              href={n.href}
+              aria-current={path === n.href ? 'page' : undefined}
+              class="no-underline hover:underline"
+              style={`color: var(--ink-muted); ${path === n.href ? 'color: var(--ink); font-weight:700;' : ''}`}
+            >{n.label}</a>
+          ))}
+        </nav>
+        <button
+          id="theme-toggle"
+          type="button"
+          class="ml-auto rounded border px-3 py-1 text-sm"
+          style="border-color: var(--control-border); color: var(--ink); background: transparent;"
+          aria-live="polite"
+        >表示：<span id="theme-label">自動</span></button>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+
+    <footer class="mt-16 border-t" style="border-color: var(--rule); background: var(--paper-raised);">
+      <div class="mx-auto max-w-5xl px-4 py-8 text-sm" style="color: var(--ink-muted);">
+        <p class="mb-2">
+          このサイトの人物解説は、日本語版ウィキペディアなどを参照し、要約して書き直したものです。
+          参照元と利用条件は<a href="/about/" style="color: var(--ink);">このサイトについて</a>に記載しています。
+        </p>
+        <p>名言の解釈は編者によるものです。出典が確認できない言葉には確度のバッジを付けています。</p>
+      </div>
+    </footer>
+
+    <script is:inline>
+      (function () {
+        var btn = document.getElementById('theme-toggle');
+        var label = document.getElementById('theme-label');
+        if (!btn || !label) return;
+        var order = ['auto', 'light', 'dark'];
+        var names = { auto: '自動', light: '明るい', dark: '暗い' };
+        function current() {
+          var t = document.documentElement.getAttribute('data-theme');
+          return t === 'light' || t === 'dark' ? t : 'auto';
+        }
+        label.textContent = names[current()];
+        btn.addEventListener('click', function () {
+          var next = order[(order.indexOf(current()) + 1) % order.length];
+          if (next === 'auto') {
+            document.documentElement.removeAttribute('data-theme');
+            try { localStorage.removeItem('kc-theme'); } catch (e) {}
+          } else {
+            document.documentElement.setAttribute('data-theme', next);
+            try { localStorage.setItem('kc-theme', next); } catch (e) {}
+          }
+          label.textContent = names[next];
+        });
+      })();
+    </script>
+  </body>
+</html>

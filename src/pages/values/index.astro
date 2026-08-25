@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { values, cssColor } from '../../data/values';
+import { allPeople } from '../../lib/people';
+
+const people = await allPeople();
+const counts = new Map(values.map((v) => [v.id, people.filter((p) => p.data.values.includes(v.id)).length]));
+---
+<BaseLayout
+  title="八つの軸"
+  description="言葉に繰り返し現れる考え方を、和・誠・匠・学・利他・粘・美・進取の八つに分けて整理しました。"
+>
+  <div class="mx-auto max-w-5xl px-4 py-10">
+    <nav aria-label="パンくず" class="mb-4 text-sm" style="color: var(--ink-muted);">
+      <a href="/" style="color: var(--ink-muted);">ホーム</a> ／ 八つの軸
+    </nav>
+    <h1 class="font-serif text-3xl font-bold sm:text-4xl">八つの軸</h1>
+    <p class="mt-4 max-w-2xl leading-loose">
+      集めた言葉を読み返すと、時代を越えて似た考え方が何度も出てきます。
+      それを八つに分けました。分類は編者によるもので、唯一の正解ではありません。
+      一人の人物に最大三つまで付けています。
+    </p>
+    <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+      {values.map((v) => (
+        <li>
+          <a href={`/values/${v.id}/`} class="flex h-full flex-col gap-2 rounded-lg border p-5 no-underline"
+             style={`border-color: var(--rule); background: var(--paper-raised); border-left: 6px solid ${cssColor(v.id)}; color: var(--ink);`}>
+            <span class="font-serif text-2xl font-bold">{v.name}</span>
+            <span class="text-sm font-bold" style="color: var(--ink-muted);">{v.meaning}</span>
+            <span class="text-sm leading-relaxed">{v.lead}</span>
+            <span class="mt-auto pt-2 text-xs" style="color: var(--ink-muted);">{counts.get(v.id)}人</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

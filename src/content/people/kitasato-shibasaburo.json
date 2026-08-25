@@ -1,0 +1,69 @@
+{
+  "id": "kitasato-shibasaburo",
+  "name": "北里柴三郎",
+  "kana": "きたさと しばさぶろう",
+  "nameEn": "Shibasaburo Kitasato",
+  "eraId": "meiji",
+  "birth": 1853,
+  "death": 1931,
+  "fields": [
+    "細菌学者",
+    "医師",
+    "教育者"
+  ],
+  "headline": "治すより、防ぐを先に置いた医師",
+  "summaryShort": "破傷風菌の純粋培養と血清療法に成功した細菌学者です。研究の場を自分で作り、日本の伝染病対策と医学教育の土台を築きました。",
+  "history": "1853年、肥後国（いまの熊本県）に生まれました。熊本医学校を経て東京医学校で学びます。医者を志したというより、病気の原因そのものを知りたいという関心が強い学生でした。1886年からドイツに留学し、細菌学のロベルト・コッホのもとで研究します。\n1889年、破傷風菌だけを取り出して育てる純粋培養に成功しました。翌年には、菌が出す毒素に対抗する抗体を利用する血清療法を、共同研究者とともに発表します。この方法は多くの感染症の治療に道を開きました。帰国後、国内に受け入れ先がないなか、福沢諭吉の支援で伝染病研究所を設立します。1894年には香港でペスト菌を発見しました。研究所が国に移管される際の方針に反発して辞職し、私財を投じて北里研究所を作り直しています。1917年には慶應義塾大学医学部の初代学部長となり、基礎と臨床を切り離さない教育を掲げました。\n1931年に亡くなりました。「医者の使命は病気を予防すること」という考えは、日本の公衆衛生の出発点になっています。",
+  "quotes": [
+    {
+      "text": "医者の使命は病気を予防することにある",
+      "meaning": "北里の考えを表す言葉として伝えられています。目の前の患者を治すことを否定せず、その手前で止めるほうが大きいと言い切りました。細菌学を選び、伝染病研究所を作った理由が、この一行に収まっています。",
+      "source": "北里柴三郎の語録",
+      "confidence": "諸説あり"
+    },
+    {
+      "text": "情を忘れたるものに非ず。私情を制したるものなり",
+      "reading": "情を忘れたのではない。私的な感情を抑えているのだ。",
+      "meaning": "厳しい態度を取る理由として語られた言葉です。冷たいのではなく、公の仕事のために自分の感情を後ろに置いている、という説明になっています。人に厳しく当たらざるを得ない立場の人の、自分への説明でもあります。",
+      "source": "北里柴三郎の語録",
+      "confidence": "諸説あり"
+    }
+  ],
+  "values": [
+    "manabi",
+    "rita",
+    "nebari"
+  ],
+  "valueNotes": {
+    "manabi": "ドイツで最先端の細菌学を学び、その方法を日本の研究体制ごと持ち帰りました。",
+    "rita": "治療より予防を優先し、公衆衛生という個人の利益になりにくい分野を選んでいます。",
+    "nebari": "研究所の移管に反発して辞職し、私財を投じて研究の場を作り直しました。"
+  },
+  "image": {
+    "src": "src/assets/portraits/kitasato-shibasaburo.jpg",
+    "credit": "北里研究所／https://www.juntendo.ac.jp/jmehm/vmh/pop/kitasato_shibasaburo.html (link)Original source: Kitasato Shibasaburo Den (北里柴三郎伝)",
+    "license": "Public domain",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AShibasabur%C5%8D_Kitasato_1910.jpg"
+  },
+  "related": [
+    "fukuzawa-yukichi",
+    "natsume-soseki"
+  ],
+  "refs": [
+    {
+      "title": "ウィキペディア日本語版「北里柴三郎」",
+      "url": "https://ja.wikipedia.org/wiki/北里柴三郎",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "title": "ウィキペディア日本語版「北里研究所」",
+      "url": "https://ja.wikipedia.org/wiki/北里研究所",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "title": "ウィキクォート日本語版「北里柴三郎」",
+      "url": "https://ja.wikiquote.org/wiki/北里柴三郎",
+      "license": "CC BY-SA 4.0"
+    }
+  ]
+}

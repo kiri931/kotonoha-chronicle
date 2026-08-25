@@ -1,0 +1,30 @@
+---
+import Portrait from './Portrait.astro';
+import ValueTag from './ValueTag.astro';
+import { lifeLabel } from '../lib/people';
+import { getEra } from '../data/eras';
+
+interface Props { person: any; showEra?: boolean }
+const { person, showEra = false } = Astro.props;
+const d = person.data;
+const era = getEra(d.eraId);
+---
+<article
+  class="flex h-full gap-4 rounded-lg border p-4 transition-shadow hover:shadow-md"
+  style="border-color: var(--rule); background: var(--paper-raised);"
+>
+  <Portrait person={person} size={96} class="shrink-0 rounded" />
+  <div class="min-w-0">
+    <h3 class="font-serif text-lg font-bold leading-snug">
+      <a href={`/people/${d.id}/`} class="no-underline hover:underline" style="color: var(--ink);">{d.name}</a>
+    </h3>
+    <p class="text-xs" style="color: var(--ink-muted);">
+      {d.kana}／{lifeLabel(person)}{showEra && era ? `／${era.name}` : ''}
+    </p>
+    <p class="mt-1 font-serif text-sm" style="color: var(--accent);">{d.headline}</p>
+    <p class="mt-2 text-sm leading-relaxed">{d.summaryShort}</p>
+    <div class="mt-3 flex flex-wrap gap-1.5">
+      {d.values.map((v: string) => <ValueTag id={v} small={true} />)}
+    </div>
+  </div>
+</article>

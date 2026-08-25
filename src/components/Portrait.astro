@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import { portrait } from '../lib/portraits';
+import { placeholderSvg } from '../lib/placeholder';
+import { cssColor, getValue } from '../data/values';
+
+interface Props {
+  person: any;
+  size?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+}
+const { person, size = 240, class: cls = '', loading = 'lazy' } = Astro.props;
+const data = person.data ?? person;
+const img = portrait(data.image?.src);
+const colors = data.values.map((v: string) => cssColor(v));
+const svg = placeholderSvg(data.id, colors, { size: 400 });
+---
+{img ? (
+  <Image
+    src={img}
+    alt={`${data.name}の肖像`}
+    width={size}
+    height={size}
+    loading={loading}
+    class={`object-cover ${cls}`}
+    style="aspect-ratio: 1 / 1; object-position: 50% 22%;"
+  />
+) : (
+  <div
+    class={cls}
+    role="img"
+    aria-label={`${data.name}の肖像は掲載していません。${data.values.map((v: string) => getValue(v)?.name).join('・')}を表す模様を代わりに表示しています`}
+    style={`width:${size}px; max-width:100%; aspect-ratio:1/1; overflow:hidden; background: var(--paper-raised); border:1px solid var(--rule);`}
+    set:html={svg}
+  />
+)}

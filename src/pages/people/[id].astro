@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Portrait from '../../components/Portrait.astro';
+import QuoteBlock from '../../components/QuoteBlock.astro';
+import ValueTag from '../../components/ValueTag.astro';
+import PersonCard from '../../components/PersonCard.astro';
+import { allPeople, lifeLabel } from '../../lib/people';
+import { getEra } from '../../data/eras';
+import { getValue, cssColor } from '../../data/values';
+
+export async function getStaticPaths() {
+  const people = await allPeople();
+  return people.map((person) => ({
+    params: { id: person.data.id },
+    props: { person, people },
+  }));
+}
+
+const { person, people } = Astro.props;
+const d = person.data;
+const era = getEra(d.eraId);
+const paragraphs = d.history.split(/\n+/).filter(Boolean);
+
+const byId = new Map(people.map((p) => [p.data.id, p]));
+const relatedExplicit = d.related.map((id) => byId.get(id)).filter(Boolean);
+
+// 「近い言葉の人」：value の重なりが多い順（明示 related と本人を除く）
+const excluded = new Set([d.id, ...d.related]);
+const nearby = people
+  .filter((p) => !excluded.has(p.data.id))
+  .map((p) => ({ p, score: p.data.values.filter((v: string) => d.values.includes(v)).length }))
+  .filter((x) => x.score > 0)
+  .sort((a, b) => b.score - a.score || Math.abs((a.p.data.birth ?? 0) - (d.birth ?? 0)) - Math.abs((b.p.data.birth ?? 0) - (d.birth ?? 0)))
+  .slice(0, 3)
+  .map((x) => x.p);
+
+const sameEra = people
+  .filter((p) => p.data.eraId === d.eraId && p.data.id !== d.id)
+  .slice(0, 4);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: d.name,
+  alternateName: [d.kana, d.nameEn],
+  description: d.summaryShort,
+  disambiguatingDescription: d.headline,
+  jobTitle: d.fields.join('、'),
+  ...(d.birth !== null ? { birthDate: String(d.birth) } : {}),
+  ...(d.death !== null ? { deathDate: String(d.death) } : {}),
+  url: new URL(`/people/${d.id}/`, Astro.site).href,
+  ...(d.image ? { image: new URL(d.image.src.replace('src/assets', '/assets'), Astro.site).href } : {}),
+  sameAs: d.refs.map((r: any) => r.url),
+};
+---
+<BaseLayout
+  title={`${d.name}｜${d.headline}`}
+  description={d.summaryShort}
+  ogImage={`/og/${d.id}.png`}
+  jsonLd={jsonLd}
+>
+  <article class="mx-auto max-w-3xl px-4 py-10" data-pagefind-body>
+    <nav aria-label="パンくず" class="mb-6 text-sm" style="color: var(--ink-muted);">
+      <a href="/" style="color: var(--ink-muted);">ホーム</a> ／
+      <a href={`/eras/${d.eraId}/`} style="color: var(--ink-muted);">{era?.name}</a> ／ {d.name}
+    </nav>
+
+    <header class="flex flex-col gap-6 sm:flex-row sm:items-start">
+      <Portrait person={person} size={180} class="rounded-lg shadow-sm" loading="eager" />
+      <div>
+        <h1 class="font-serif text-3xl font-bold sm:text-4xl">{d.name}</h1>
+        <p class="mt-1 text-sm" style="color: var(--ink-muted);">{d.kana}／{d.nameEn}</p>
+        <p class="mt-1 text-sm" style="color: var(--ink-muted);">
+          {lifeLabel(person)}／<a href={`/eras/${d.eraId}/`} style="color: var(--ink-muted);">{era?.name}</a>
+        </p>
+        <ul class="mt-3 flex flex-wrap gap-2">
+          {d.fields.map((f: string) => (
+            <li class="rounded border px-2 py-0.5 text-xs" style="border-color: var(--control-border); color: var(--ink);">{f}</li>
+          ))}
+        </ul>
+        <p class="mt-4 font-serif text-2xl font-bold leading-snug" style="color: var(--accent);">{d.headline}</p>
+        <p class="mt-3 leading-relaxed">{d.summaryShort}</p>
+      </div>
+    </header>
+
+    <section class="mt-12" aria-labelledby="quotes">
+      <h2 id="quotes" class="mb-4 border-b pb-2 font-serif text-2xl font-bold" style="border-color: var(--rule-strong);">言葉</h2>
+      <div class="space-y-6">
+        {d.quotes.map((q: any, i: number) => <QuoteBlock quote={q} vertical={i === 0} />)}
+      </div>
+    </section>
+
+    <section class="mt-12" aria-labelledby="history">
+      <h2 id="history" class="mb-4 border-b pb-2 font-serif text-2xl font-bold" style="border-color: var(--rule-strong);">この人の歩み</h2>
+      <div class="prose-jp font-serif text-base leading-loose">
+        {paragraphs.map((t: string) => <p>{t}</p>)}
+      </div>
+    </section>
+
+    <section class="mt-12" aria-labelledby="values-sec">
+      <h2 id="values-sec" class="mb-4 border-b pb-2 font-serif text-2xl font-bold" style="border-color: var(--rule-strong);">この言葉が映すもの</h2>
+      <ul class="space-y-3">
+        {d.values.map((v: string) => {
+          const def = getValue(v);
+          const note = d.valueNotes?.[v];
+          return (
+            <li class="rounded-lg border p-4" style={`border-color: var(--rule); background: var(--paper-raised); border-left: 6px solid ${cssColor(v)};`}>
+              <div class="flex flex-wrap items-center gap-3">
+                <ValueTag id={v} />
+                <span class="text-sm" style="color: var(--ink-muted);">{def?.meaning}</span>
+              </div>
+              {note && <p class="mt-2 leading-relaxed">{note}</p>}
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+
+    <section class="mt-12" aria-labelledby="related">
+      <h2 id="related" class="mb-4 border-b pb-2 font-serif text-2xl font-bold" style="border-color: var(--rule-strong);">つながる人</h2>
+      {relatedExplicit.length > 0 && (
+        <>
+          <h3 class="mb-3 font-bold">関わりのある人</h3>
+          <ul class="grid gap-4 sm:grid-cols-2">
+            {relatedExplicit.map((p: any) => (<li><PersonCard person={p} showEra={true} /></li>))}
+          </ul>
+        </>
+      )}
+      {nearby.length > 0 && (
+        <>
+          <h3 class="mt-6 mb-3 font-bold">近い言葉の人</h3>
+          <ul class="grid gap-4 sm:grid-cols-2">
+            {nearby.map((p: any) => (<li><PersonCard person={p} showEra={true} /></li>))}
+          </ul>
+        </>
+      )}
+      {sameEra.length > 0 && (
+        <p class="mt-6 text-sm">
+          同じ時代の人：
+          {sameEra.map((p: any, i: number) => (
+            <>{i > 0 ? '、' : ''}<a href={`/people/${p.data.id}/`} style="color: var(--ink);">{p.data.name}</a></>
+          ))}
+        </p>
+      )}
+    </section>
+
+    <section class="mt-12" aria-labelledby="refs">
+      <h2 id="refs" class="mb-4 border-b pb-2 font-serif text-2xl font-bold" style="border-color: var(--rule-strong);">出典</h2>
+      <ul class="space-y-2 text-sm">
+        {d.refs.map((r: any) => (
+          <li>
+            <a href={r.url} rel="noopener noreferrer nofollow" target="_blank" style="color: var(--ink);">{r.title}</a>
+            <span style="color: var(--ink-muted);">（{r.license}）</span>
+          </li>
+        ))}
+      </ul>
+      {d.image ? (
+        <p class="mt-4 text-xs leading-relaxed" style="color: var(--ink-muted);">
+          肖像：{d.image.credit}／{d.image.license}／
+          <a href={d.image.sourceUrl} rel="noopener noreferrer nofollow" target="_blank" style="color: var(--ink-muted);">出典ページ</a>
+        </p>
+      ) : (
+        <p class="mt-4 text-xs leading-relaxed" style="color: var(--ink-muted);">
+          肖像：利用条件を満たす画像が確認できなかったため、掲載していません。代わりに、この人物の軸の色でつくった模様を表示しています。
+        </p>
+      )}
+      <p class="mt-2 text-xs leading-relaxed" style="color: var(--ink-muted);">
+        本文は上記を参照して編者が要約・再構成したものです。原文の転載ではありません。
+      </p>
+    </section>
+  </article>
+</BaseLayout>

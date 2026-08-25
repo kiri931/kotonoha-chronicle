@@ -1,0 +1,67 @@
+{
+  "id": "saigo-takamori",
+  "name": "西郷隆盛",
+  "kana": "さいごう たかもり",
+  "nameEn": "Takamori Saigo",
+  "eraId": "bakumatsu",
+  "birth": 1828,
+  "death": 1877,
+  "fields": [
+    "政治家",
+    "軍人"
+  ],
+  "headline": "維新を進め、維新に反した人",
+  "summaryShort": "薩摩藩を代表する立場で新政府をつくった中心人物です。のちに政府と対立して郷里へ戻り、西南戦争で敗れて生涯を終えました。",
+  "history": "1828年、薩摩藩（いまの鹿児島県）の下級武士の家に生まれました。藩主・島津斉彬に見いだされて江戸で活動しますが、斉彬の死後は二度にわたり島へ流されます。流刑地での数年は、後の考え方に影響を与えたと言われます。\n復帰後は薩摩の軍事と政治を担い、坂本龍馬らの仲介で長州と同盟を結びました。1868年、戊辰戦争で新政府軍を率い、勝海舟との会談によって江戸城を戦わずに明け渡す形をまとめます。百万都市を焼かずに済ませた判断でした。新政府では参議として廃藩置県などを進めますが、朝鮮への使節派遣をめぐって対立し、1873年に辞職して鹿児島へ帰ります。故郷では私学校を開き、職を失った士族の教育にあたりました。1877年、その士族らに押される形で西南戦争を起こし、敗れて城山で自決します。\n新政府をつくった人が、その政府と戦って死にました。評価が最も割れる人物の一人ですが、私財を残さなかったことは各種の記録が伝えています。",
+  "quotes": [
+    {
+      "text": "敬天愛人",
+      "reading": "天を敬い、人を愛する。",
+      "meaning": "西郷の考えを門人がまとめた『南洲翁遺訓』にある四字です。人を相手にせず天を相手にせよ、という文脈で語られました。人からどう見られるかではなく、筋が通っているかを基準にするという判断の置き方です。",
+      "source": "『南洲翁遺訓』",
+      "confidence": "確実"
+    },
+    {
+      "text": "命もいらず、名もいらず、官位も金もいらぬ人は、始末に困るもの也",
+      "reading": "命も名誉も地位も金も欲しがらない人は、扱いに困る。",
+      "meaning": "『南洲翁遺訓』の一節で、この後に「そういう人でなければ大事は成せない」と続きます。取引の材料を持たない相手は動かせない。誉め言葉と困りごとを同時に言っている、独特の人物評です。",
+      "source": "『南洲翁遺訓』",
+      "confidence": "確実"
+    }
+  ],
+  "values": [
+    "makoto",
+    "rita"
+  ],
+  "valueNotes": {
+    "makoto": "地位も財産も手元に残さず、自分の言い分を通した末に故郷で敗れました。",
+    "rita": "江戸城の明け渡しでは、勝ち戦の途中で街と住民を焼かない道を選んでいます。"
+  },
+  "image": {
+    "src": "src/assets/portraits/saigo-takamori.jpg",
+    "credit": "Ishikawa Shizumasa (1848-1925)／Osaka City Museum - https://web.archive.org/web/20180909065741/http://www.mus-his.city.osaka.jp/eng/exhibitions/special/2018/segodon/segodon_item.html (Owned privately a",
+    "license": "Public domain",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASaigo_Takamori_Portrait_by_Ishikawa_Shizumasa.jpg"
+  },
+  "related": [
+    "katsu-kaishu",
+    "sakamoto-ryoma"
+  ],
+  "refs": [
+    {
+      "title": "ウィキペディア日本語版「西郷隆盛」",
+      "url": "https://ja.wikipedia.org/wiki/西郷隆盛",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "title": "ウィキペディア日本語版「南洲翁遺訓」",
+      "url": "https://ja.wikipedia.org/wiki/南洲翁遺訓",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "title": "ウィキペディア日本語版「江戸開城」",
+      "url": "https://ja.wikipedia.org/wiki/江戸開城",
+      "license": "CC BY-SA 4.0"
+    }
+  ]
+}

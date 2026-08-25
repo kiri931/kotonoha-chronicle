@@ -1,0 +1,27 @@
+---
+import ConfidenceBadge from './ConfidenceBadge.astro';
+interface Props { quote: any; vertical?: boolean; headingLevel?: 'h3' | 'h4' }
+const { quote, vertical = false } = Astro.props;
+---
+<figure class="rounded-lg border p-5 sm:p-6" style="border-color: var(--rule); background: var(--paper-raised);">
+  <div class={vertical ? 'lg:flex lg:justify-center' : ''}>
+    <blockquote
+      class={`font-serif text-xl leading-relaxed sm:text-2xl ${vertical ? 'vertical-quote' : ''}`}
+      style="color: var(--ink);"
+    >
+      {quote.text}
+    </blockquote>
+  </div>
+  {quote.reading && (
+    <p class="mt-4 text-sm" style="color: var(--ink-muted);">
+      <span class="font-bold">現代語：</span>{quote.reading}
+    </p>
+  )}
+  <figcaption class="mt-4 border-t pt-4 text-sm leading-relaxed" style="border-color: var(--rule);">
+    <p>{quote.meaning}</p>
+    <p class="mt-3 flex flex-wrap items-center gap-2 text-xs" style="color: var(--ink-muted);">
+      <span>出典：{quote.source}</span>
+      <ConfidenceBadge confidence={quote.confidence} />
+    </p>
+  </figcaption>
+</figure>
