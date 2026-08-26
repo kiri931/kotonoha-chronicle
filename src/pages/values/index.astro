@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { link } from '../../lib/url';
 import { values, cssColor } from '../../data/values';
+import Ruby from '../../components/Ruby.astro';
 import { allPeople } from '../../lib/people';
 
 const people = await allPeople();
@@ -28,7 +29,7 @@ const counts = new Map(values.map((v) => [v.id, people.filter((p) => p.data.valu
              style={`border-color: var(--rule); background: var(--paper-raised); border-left: 6px solid ${cssColor(v.id)}; color: var(--ink);`}>
             <span class="font-serif text-2xl font-bold">{v.name}</span>
             <span class="text-sm font-bold" style="color: var(--ink-muted);">{v.meaning}</span>
-            <span class="text-sm leading-relaxed">{v.lead}</span>
+            <span class="text-sm leading-relaxed"><Ruby text={v.lead} /></span>
             <span class="mt-auto pt-2 text-xs" style="color: var(--ink-muted);">{counts.get(v.id)}人</span>
           </a>
         </li>

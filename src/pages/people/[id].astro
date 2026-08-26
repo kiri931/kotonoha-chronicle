@@ -5,6 +5,7 @@ import Portrait from '../../components/Portrait.astro';
 import QuoteBlock from '../../components/QuoteBlock.astro';
 import ValueTag from '../../components/ValueTag.astro';
 import PersonCard from '../../components/PersonCard.astro';
+import Ruby from '../../components/Ruby.astro';
 import { allPeople, lifeLabel } from '../../lib/people';
 import { getEra } from '../../data/eras';
 import { getValue, cssColor } from '../../data/values';
@@ -69,7 +70,7 @@ const jsonLd = {
     <header class="flex flex-col gap-6 sm:flex-row sm:items-start">
       <Portrait person={person} size={180} class="rounded-lg shadow-sm" loading="eager" />
       <div>
-        <h1 class="font-serif text-3xl font-bold sm:text-4xl">{d.name}</h1>
+        <h1 class="font-serif text-3xl font-bold sm:text-4xl"><Ruby text={d.name} /></h1>
         <p class="mt-1 text-sm" style="color: var(--ink-muted);">{d.kana}／{d.nameEn}</p>
         <p class="mt-1 text-sm" style="color: var(--ink-muted);">
           {lifeLabel(person)}／<a href={link(`/eras/${d.eraId}/`)} style="color: var(--ink-muted);">{era?.name}</a>
@@ -79,22 +80,22 @@ const jsonLd = {
             <li class="rounded border px-2 py-0.5 text-xs" style="border-color: var(--control-border); color: var(--ink);">{f}</li>
           ))}
         </ul>
-        <p class="mt-4 font-serif text-2xl font-bold leading-snug" style="color: var(--accent);">{d.headline}</p>
-        <p class="mt-3 leading-relaxed">{d.summaryShort}</p>
+        <p class="mt-4 font-serif text-2xl font-bold leading-snug" style="color: var(--accent);"><Ruby text={d.headline} overrides={d.rubyOverrides} /></p>
+        <p class="mt-3 leading-relaxed"><Ruby text={d.summaryShort} overrides={d.rubyOverrides} /></p>
       </div>
     </header>
 
     <section class="mt-12" aria-labelledby="quotes">
       <h2 id="quotes" class="mb-4 border-b pb-2 font-serif text-2xl font-bold" style="border-color: var(--rule-strong);">言葉</h2>
       <div class="space-y-6">
-        {d.quotes.map((q: any, i: number) => <QuoteBlock quote={q} vertical={i === 0} />)}
+        {d.quotes.map((q: any, i: number) => <QuoteBlock quote={q} vertical={i === 0} overrides={d.rubyOverrides} />)}
       </div>
     </section>
 
     <section class="mt-12" aria-labelledby="history">
       <h2 id="history" class="mb-4 border-b pb-2 font-serif text-2xl font-bold" style="border-color: var(--rule-strong);">この人の歩み</h2>
       <div class="prose-jp font-serif text-base leading-loose">
-        {paragraphs.map((t: string) => <p>{t}</p>)}
+        {paragraphs.map((t: string) => <p><Ruby text={t} overrides={d.rubyOverrides} /></p>)}
       </div>
     </section>
 
@@ -110,7 +111,7 @@ const jsonLd = {
                 <ValueTag id={v} />
                 <span class="text-sm" style="color: var(--ink-muted);">{def?.meaning}</span>
               </div>
-              {note && <p class="mt-2 leading-relaxed">{note}</p>}
+              {note && <p class="mt-2 leading-relaxed"><Ruby text={note} overrides={d.rubyOverrides} /></p>}
             </li>
           );
         })}

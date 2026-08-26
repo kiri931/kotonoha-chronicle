@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { link } from '../../lib/url';
 import PersonCard from '../../components/PersonCard.astro';
+import Ruby from '../../components/Ruby.astro';
 import { eras } from '../../data/eras';
 import { allPeople } from '../../lib/people';
 
@@ -25,7 +26,7 @@ const { era, people } = Astro.props;
     </nav>
     <p class="text-sm tracking-wide" style="color: var(--ink-muted);">{era.rangeLabel}</p>
     <h1 class="font-serif text-3xl font-bold sm:text-4xl">{era.name}</h1>
-    <p class="mt-4 max-w-2xl font-serif leading-loose">{era.lead}</p>
+    <p class="mt-4 max-w-2xl font-serif leading-loose"><Ruby text={era.lead} /></p>
 
     {people.length === 0 ? (
       <p class="mt-10">この年代の人物はまだ収録していません。</p>

@@ -122,3 +122,24 @@ body {
 .timeline-scroll { scrollbar-width: thin; }
 .timeline-scroll::-webkit-scrollbar { height: 10px; }
 .timeline-scroll::-webkit-scrollbar-thumb { background: var(--rule-strong); border-radius: 999px; }
+
+/* ---- ふりがな（ルビ） ---- */
+ruby { ruby-align: center; }
+rt {
+  font-size: 0.55em;
+  font-weight: 400;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
+  user-select: none;      /* 本文をコピーしたときに読みが混ざらないように */
+  line-height: 1.2;
+}
+/* 「ふりがな：なし」を選んだときは、読みを隠す。
+   rp（対応していない環境向けの括弧）も一緒に隠す。 */
+html[data-furigana="off"] rt,
+html[data-furigana="off"] rp { display: none; }
+
+/* ルビを出すぶん、行の間隔を少し広げる */
+.has-ruby-body { line-height: 2.1; }
+@media (min-width: 1024px) {
+  .vertical-quote ruby { ruby-position: over; }
+}

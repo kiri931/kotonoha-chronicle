@@ -54,6 +54,8 @@ const path = Astro.url.pathname;
         try {
           var t = localStorage.getItem('kc-theme');
           if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+          var f = localStorage.getItem('kc-furigana');
+          if (f === 'off') document.documentElement.setAttribute('data-furigana', 'off');
         } catch (e) {}
       })();
     </script>
@@ -78,9 +80,16 @@ const path = Astro.url.pathname;
           ))}
         </nav>
         <button
-          id="theme-toggle"
+          id="furigana-toggle"
           type="button"
           class="ml-auto rounded border px-3 py-1 text-sm"
+          style="border-color: var(--control-border); color: var(--ink); background: transparent;"
+          aria-pressed="true"
+        >ふりがな：<span id="furigana-label">あり</span></button>
+        <button
+          id="theme-toggle"
+          type="button"
+          class="rounded border px-3 py-1 text-sm"
           style="border-color: var(--control-border); color: var(--ink); background: transparent;"
           aria-live="polite"
         >表示：<span id="theme-label">自動</span></button>
@@ -102,6 +111,25 @@ const path = Astro.url.pathname;
     </footer>
 
     <script is:inline>
+      (function () {
+        var fb = document.getElementById('furigana-toggle');
+        var fl = document.getElementById('furigana-label');
+        if (fb && fl) {
+          var on = function () {
+            return document.documentElement.getAttribute('data-furigana') !== 'off';
+          };
+          fl.textContent = on() ? 'あり' : 'なし';
+          fb.setAttribute('aria-pressed', String(on()));
+          fb.addEventListener('click', function () {
+            var next = on() ? 'off' : 'on';
+            if (next === 'off') document.documentElement.setAttribute('data-furigana', 'off');
+            else document.documentElement.removeAttribute('data-furigana');
+            try { localStorage.setItem('kc-furigana', next); } catch (e) {}
+            fl.textContent = next === 'off' ? 'なし' : 'あり';
+            fb.setAttribute('aria-pressed', String(next !== 'off'));
+          });
+        }
+      })();
       (function () {
         var btn = document.getElementById('theme-toggle');
         var label = document.getElementById('theme-label');

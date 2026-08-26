@@ -64,5 +64,8 @@
       "url": "https://ja.wikipedia.org/wiki/海援隊",
       "license": "CC BY-SA 4.0"
     }
-  ]
+  ],
+  "rubyOverrides": {
+    "我を": "われを"
+  }
 }

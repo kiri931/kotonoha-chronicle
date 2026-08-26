@@ -1,0 +1,19 @@
+---
+/**
+ * 本文にふりがなを付けて出す。
+ * ふりがなの表示・非表示は CSS（html[data-furigana="off"]）で切り替わるので、
+ * ここでは常にルビ付きのHTMLを出しておく。
+ */
+import { annotate } from '../lib/furigana';
+
+interface Props { text: string; overrides?: Record<string, string> }
+const { text, overrides } = Astro.props;
+const segments = await annotate(text, overrides);
+---
+{segments.map((s) =>
+  s.kind === 'ruby' ? (
+    <ruby>{s.text}<rp>（</rp><rt>{s.reading}</rt><rp>）</rp></ruby>
+  ) : (
+    <Fragment>{s.text}</Fragment>
+  )
+)}

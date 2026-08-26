@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { link } from '../../lib/url';
 import PersonCard from '../../components/PersonCard.astro';
+import Ruby from '../../components/Ruby.astro';
 import { values, cssColor } from '../../data/values';
 import { allPeople } from '../../lib/people';
 
@@ -25,7 +26,7 @@ const { value, people } = Astro.props;
       <h1 class="font-serif text-3xl font-bold sm:text-4xl">{value.name}</h1>
     </div>
     <p class="mt-2 font-bold" style="color: var(--ink-muted);">{value.meaning}</p>
-    <p class="mt-4 max-w-2xl font-serif leading-loose">{value.lead}</p>
+    <p class="mt-4 max-w-2xl font-serif leading-loose"><Ruby text={value.lead} /></p>
 
     {people.length === 0 ? (
       <p class="mt-10">この軸の人物はまだ収録していません。</p>

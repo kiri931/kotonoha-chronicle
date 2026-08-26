@@ -4,6 +4,7 @@ import { link } from '../lib/url';
 import Timeline from '../components/Timeline.astro';
 import PersonCard from '../components/PersonCard.astro';
 import QuoteBlock from '../components/QuoteBlock.astro';
+import Ruby from '../components/Ruby.astro';
 import { timeline, allQuotes, pickByDate, peopleByEra } from '../lib/people';
 import { values, cssColor } from '../data/values';
 
@@ -37,7 +38,7 @@ const jsonLd = {
   <section class="mx-auto max-w-5xl px-4 pt-12 pb-10">
     <p class="text-sm tracking-widest" style="color: var(--ink-muted);">KOTONOHA CHRONICLE</p>
     <h1 class="font-serif text-4xl font-bold leading-tight sm:text-5xl">ことのは年代記</h1>
-    <p class="mt-6 max-w-2xl whitespace-pre-line font-serif text-base leading-loose sm:text-lg">{lead}</p>
+    <p class="mt-6 max-w-2xl whitespace-pre-line font-serif text-base leading-loose sm:text-lg"><Ruby text={lead} /></p>
   </section>
 
   <section class="mx-auto max-w-5xl px-4 py-8" aria-labelledby="today">

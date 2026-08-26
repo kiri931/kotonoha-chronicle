@@ -39,6 +39,8 @@ const people = defineCollection({
     values: z.array(z.enum(valueIds)).min(1).max(3),
     /** 仕様への追加（README に記載）：value ごとの「この人の場合」の1文 */
     valueNotes: z.record(z.string(), z.string()).optional(),
+    /** この人物のページでだけ効かせるふりがなの上書き（同じ語でも文脈で読みが変わるとき） */
+    rubyOverrides: z.record(z.string(), z.string()).optional(),
     image: image.nullable(),
     related: z.array(z.string()).default([]),
     refs: z.array(z.object({ title: z.string(), url: z.string().url(), license: z.string() })).min(1),
