@@ -26,7 +26,8 @@ const jsonLd = {
   name: 'ことのは年代記',
   alternateName: 'Kotonoha Chronicle',
   description: '日本の歴史上の人物の名言と歩みを、年代別にまとめた読み物です。',
-  url: Astro.site?.href,
+  // Astro.site だけだと本体トップ(https://koukou-jouhou.org/)を指してしまう。
+  url: new URL(link('/'), Astro.site).href,
   inLanguage: 'ja',
 };
 ---

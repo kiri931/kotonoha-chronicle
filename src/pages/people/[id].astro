@@ -50,8 +50,16 @@ const jsonLd = {
   jobTitle: d.fields.join('、'),
   ...(d.birth !== null ? { birthDate: String(d.birth) } : {}),
   ...(d.death !== null ? { deathDate: String(d.death) } : {}),
-  url: new URL(`/people/${d.id}/`, Astro.site).href,
-  ...(d.image ? { image: new URL(d.image.src.replace('src/assets', '/assets'), Astro.site).href } : {}),
+  // link() を通さないと base('/kotonoha-chronicle') が落ちて
+  // https://koukou-jouhou.org/people/<id>/ という存在しないURLになる。
+  // Google はこの JSON-LD の url を実際にクロールしに来て404を積む
+  // (Search Console の「見つかりませんでした(404)」に /people/* が並んだ)。
+  url: new URL(link(`/people/${d.id}/`), Astro.site).href,
+  // d.image.src は Astro の最適化前パスで、ビルド後の実体(/_astro/<name>.<hash>.webp)とは
+  // 一致しない。置換で作ったURLは404になっていた(Search Console の404に並んだ)。
+  // OGP用に全人物分を書き出している /og/<id>.png はハッシュが付かず安定しているので、
+  // JSON-LD の image はこちらを指す(og:image と同じもの)。
+  image: new URL(link(`/og/${d.id}.png`), Astro.site).href,
   sameAs: d.refs.map((r: any) => r.url),
 };
 ---
