@@ -17,7 +17,6 @@
     "check:a11y": "node scripts/check-a11y.mjs"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.2.6",
     "kuromoji": "^0.1.2",
